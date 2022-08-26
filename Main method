@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args){
+        atmoperationimplimentation op=new atmoperationimplimentation();
+        int atmnumber=12345;
+        int atmpin=123;
+        Scanner sc= new Scanner(System.in);
+        System.out.println("Welcome to the ATM machine");
+        System.out.print("Enter the atmNumber:  ");
+        int atmNumber=sc.nextInt();
+        System.out.print("Enter the pin:  ");
+        int pin= sc.nextInt();
+        if(atmnumber==atmNumber && atmpin==pin){
+            System.out.println("Choose the option below which u want to do");
+            while(true){
+                System.out.println("1. view available balance\n2. deposite money\n3. withdraw money\n4. view mini statement \n5. exit from ATM matchine");
+                int choice= sc.nextInt();
+                if(choice==1){
+                    op.viewBalance();
+                }
+               else if(choice==2){
+                    System.out.println("Enter the amount to be deposited: ");
+                    double depositeAmount= sc.nextDouble();
+                    op.depositeAmount(depositeAmount);
+
+                }
+                else if(choice==3){
+                    System.out.println("How much money u want to withdow: ");
+                    double withdrawAmount= sc.nextDouble();
+                    op.withdrawAmount(withdrawAmount);
+
+                }
+                else if(choice==4){
+                    op.miniStatement();
+
+                }
+                else if(choice==5){
+                    System.out.println("Thank you for using ATM matchine");
+                    System.exit(0);
+                }else{
+                    System.out.println("Please enter the correct choice");
+                }
+            }
+        }else{
+            System.out.println("validation incorrect");
+            System.exit(0);
+        }
+    }
+}
