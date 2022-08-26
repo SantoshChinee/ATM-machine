@@ -1,0 +1,45 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class atmoperationimplimentation implements atmOperationINterface{
+    ATM atm= new ATM();
+    HashMap<Double,String> ministate= new HashMap<>();
+
+    @Override
+    public void viewBalance() {
+        System.out.println("The available balance is: " + atm.getBalence());
+    }
+
+    @Override
+    public void withdrawAmount(double withdrawAmount) {
+        if(withdrawAmount%500==0){
+            if(withdrawAmount<=atm.getBalence()){
+                ministate.put(withdrawAmount, " withdrow amonut");
+                System.out.println(withdrawAmount+" collect the cash");
+                atm.setBalence(atm.getBalence()-withdrawAmount);
+                viewBalance();
+            }else{
+                System.out.println("insufficiant balance");
+                System.exit(0);
+            }
+        }else {
+            System.out.println("enter the amount multiple of 500");
+        }
+    }
+
+    @Override
+    public void depositeAmount(double depositeAmount) {
+        ministate.put(depositeAmount, " deposited amonut");
+        System.out.println(depositeAmount+"  this amount is deposited in your account");
+        atm.setBalence(atm.getBalence()+depositeAmount);
+        viewBalance();
+    }
+
+    @Override
+    public void miniStatement() {
+        for(Map.Entry<Double,String> m:ministate.entrySet()){
+            System.out.println(m.getKey()+" "+m.getValue());
+        }
+
+    }
+}
